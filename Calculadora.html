@@ -1,0 +1,267 @@
+<html>
+
+<nav><ul>
+        <li><a href="ez_schoolhouse.html">Inicio</a></li>
+        <li><a href="Biologia.html">Biología</a></li>
+        <li><a href="historia.html">Historia</a></li>
+        <li><a href="PGjuegos.html">FreeTime</a></li>
+        
+    </ul></nav>
+    
+  <style>          
+nav a{
+    text-decoration:none;
+    color:inherit;
+    font-size:14px;
+    } 
+    nav li{
+    display:inline-block;
+    width:10%;
+    padding:5px 10px;
+    background-color:#000;
+    border:1px solid #000;
+    text-align:center;
+    color:#fff;
+    }
+    nav li:hover{
+    background-color:#fff;
+    color:#000;
+    }
+    </style>
+
+<head>
+<style>
+
+input[type=button] 
+{
+background-color: white;
+border: none;
+color: black;
+font-weight: bold;
+padding: 6px 20px;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 20px;
+margin: 4px; 4px;
+cursor: pointer;
+box-shadow: 3px 3px 3px black;
+}
+
+input[type="text"]
+{
+border: solid;
+color: black;
+padding: 15px 32;
+text-align: right;
+text-decoration: none;
+display: inline-block;
+font-size: 16px;
+margin: 4px 2px;
+cursor: pointer;
+width: 98%;
+box-shadow: 3px 3px 3px black;
+}
+
+body
+{
+background-color: #D4D7DB;
+}
+
+
+
+</style>
+
+<script type="text/javascript">
+
+var numpantalla="0";
+var pantallaconnumero="si"; //Si o No
+var usarpunto="no"; //Si o No
+var numespera=0;
+var operapendiente="";
+var solucion="";
+
+function ingresarnumero(x)
+{
+if(x!=".")
+{
+
+	if(numpantalla=="0" || pantallaconnumero=="si")
+		{
+			document.Calculadora.txtboxnros.value=x;
+			numpantalla=x;
+		}
+	else if(x!=".")
+		{
+			document.Calculadora.txtboxnros.value+=x;
+			numpantalla+=x;
+		}
+}
+
+if(x=="." && usarpunto=="no" && numpantalla=="0")
+	{
+		document.Calculadora.txtboxnros.value="0.";
+		numpantalla=x;
+		usarpunto="si";
+	}	
+else if(x=="." && usarpunto=="no")
+	{
+
+		document.Calculadora.txtboxnros.value +=x;
+		numpantalla +=x;
+		usarpunto="si";
+	}
+else if(x=="." && usarpunto=="si")
+{
+
+}
+	pantallaconnumero="no";
+}
+
+function ingresaoperacion(y)
+{
+if(operapendiente =="")
+{
+
+numespera=document.Calculadora.txtboxnros.value;
+document.Calculadora.txtboxnros.value +=y;
+operapendiente = y;
+pantallaconnumero = "no";
+numpantalla = "";
+usarpunto = "no";
+_
+}
+
+}
+
+function resultado()
+{
+
+if(operapendiente != "") 
+{
+solucion=numespera+operapendiente+numpantalla;
+document.Calculadora.txtboxnros.value=eval(solucion);
+numpantalla=eval(solucion);
+pantallaconnumero="si";
+operapendiente = "";
+usarpunto = "no";
+
+}
+
+}
+
+function raiz()
+{
+
+if(operapendiente == "")
+{
+document.Calculadora.txtboxnros.value=Math.sqrt(numpantalla);
+pantallaconnumero = "no";
+operapendiente = "";
+usarpunto = "no";
+}
+}
+
+function limpiar()
+{
+
+ numpantalla="0";
+ pantallaconnumero="si";
+ usarpunto="no"; 
+ numespera=0;
+ operapendiente="";
+ solucion="";
+document.Calculadora.txtboxnros.value="0";
+}
+
+
+
+
+
+
+
+</script>
+</head>
+<body>
+<center>
+
+<form name="Calculadora">
+
+<table border="3">
+
+<tr>
+<td colspan="5">
+<input type="text" name="txtboxnros" value="0" disabled>
+</td>
+</tr>
+
+<tr>
+<td><input type="button" value="1" onclick="ingresarnumero(this.value)"></td>
+<td><input type="button" value="2" onclick="ingresarnumero(this.value)"></td>
+<td><input type="button" value="3" onclick="ingresarnumero(this.value)"></td>
+<td><input type="button" value="+" onclick="ingresaoperacion(this.value)"></td>
+<td><input type="button" value="-" onclick="ingresaoperacion(this.value)"></td>
+</tr>
+
+<tr>
+<td><input type="button" value="4" onclick="ingresarnumero(this.value)"></td>
+<td><input type="button" value="5" onclick="ingresarnumero(this.value)"></td>
+<td><input type="button" value="6" onclick="ingresarnumero(this.value)"></td>
+<td><input type="button" value="*" onclick="ingresaoperacion(this.value)"></td>
+<td><input type="button" value="/" onclick="ingresaoperacion(this.value)"></td>
+</tr>
+
+<tr>
+<td><input type="button" value="7" onclick="ingresarnumero(this.value)"></td>
+<td><input type="button" value="8" onclick="ingresarnumero(this.value)"></td>
+<td><input type="button" value="9" onclick="ingresarnumero(this.value)"></td>
+<td><input type="button" value="^" onclick="ingresaoperacion('**')"></td>
+<td><input type="button" value="√" onclick="raiz()"></td>
+</tr>
+
+<tr>
+<td><input type="button" value="0" onclick="ingresarnumero(this.value)"></td>
+<td><input type="button" value="." onclick="ingresarnumero(this.value)"></td>
+<td><input type="button" value="C" onclick="limpiar()"></td>
+<td colspan="2"><input type="button" value="      =      " onclick="resultado()"></td>
+</tr>
+
+<head>
+
+<body background="2.png"text="#000000"> 
+ <title> Matematicas </title>
+
+<center>
+<i><font size="150"> Matematicas </font></i>
+<p>
+La matemática es una ciencia lógica deductiva, que utiliza símbolos para generar una teoría exacta de deducción e inferencia basada en definiciones, axiomas, postulados y reglas que transforman elementos primitivos en relaciones y teoremas más complejos. Esta ciencia enseña al individuo a pensar de una manera lógica y por lo tanto a desarrollar habilidades a resolver problemas y tomar decisiones. Las habilidades numéricas son valoradas por la mayoría de los sectores, se puede decir que en algunos casos son considerados esenciales.
+</p>
+</center>
+</body>
+<table border=0>
+<tr>
+<td><font size="15">Suma</font></td>
+</tr>
+<tr>
+<td><iframe width="300" height="200" src="https://www.youtube.com/embed/Lqf5WmulMYI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></td>
+<td align =justifyr> La suma o adición es una de las cuatro operaciones básicas de la aritmética que consiste en la adición de dos o más elementos para llegar a un resultado final donde todo se incluye.El símbolo de la suma es el símbolo más (+) y se intercala entre los elementos que se quiere sumar como, por ejemplo: 2+3=5.La suma puede ser de cualquier elemento tanto de números naturales, enteros, decimales, fracciones, reales y complejos o expresiones algebraicas</td>
+</tr>
+<tr>
+<td><font size="15">Multiplicacion</font></td>
+</tr>
+<tr>
+<td align =justifyr>La multiplicación es una operación binaria que se establece en un conjunto numérico.2​ Tal el caso de números naturales, consiste en sumar un número tantas veces como indica otro número. Así, 4×3 (léase «cuatro multiplicado por tres» o, simplemente, «cuatro por tres») es igual a sumar tres veces el valor 4 por sí mismo (4+4+4)(nota3​) Es una operación diferente de la adición, pero equivalente. No es igual a una suma reiterada; solo son equivalentes porque permiten alcanzar el mismo resultado. La multiplicación está asociada al concepto de área geométrica.</td>
+<td><iframe width="300" height="200" src="https://www.youtube.com/embed/YFtEaVw5k1A" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></td>
+</tr>
+<tr>
+<td><font size="15">Division</font></td>
+</tr>
+<tr>
+<td><iframe width="300" height="200" src="https://www.youtube.com/embed/UHXwGxfTJIQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></td>
+<td align =justifyr>En la matemática, la división es una operación parcialmente definida en el conjunto de los números naturales y los números enteros; en cambio, en el caso de los números racionales, reales y complejos es siempre posible efectuar la división, exigiendo que el divisor sea distinto de cero, sea cual fuera la naturaleza de los números por dividir. En el caso de que sea posible efectuar la división, esta consiste en indagar cuántas veces un número (divisor) está "contenido" en otro número (dividendo)</td>
+</tr>
+</table>
+</form>
+</center>
+</body>
+</html>
